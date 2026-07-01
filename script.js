@@ -508,3 +508,29 @@ document.addEventListener("DOMContentLoaded", function () {
     observer.observe(el);
   });
 });
+// ============================================
+// 8. ДВОЙНОЙ КЛИК ДЛЯ ЗУМА В ЛАЙТБОКСЕ
+// ============================================
+document.addEventListener("DOMContentLoaded", function () {
+  const lightboxImage = document.getElementById("lightboxImage");
+
+  lightboxImage.addEventListener("dblclick", function (e) {
+    // Проверяем, есть ли уже зум
+    const currentScale = this.style.transform
+      ? parseFloat(this.style.transform.replace(/[^0-9.]/g, ""))
+      : 1;
+
+    if (currentScale > 1) {
+      // Уменьшаем
+      this.style.transform = "scale(1)";
+      this.style.transformOrigin = "center center";
+    } else {
+      // Увеличиваем
+      const rect = this.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      this.style.transformOrigin = `${x}% ${y}%`;
+      this.style.transform = "scale(2.5)";
+    }
+  });
+});
