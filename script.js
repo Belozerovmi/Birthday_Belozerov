@@ -707,3 +707,52 @@ document.addEventListener("DOMContentLoaded", function () {
     observer.observe(el);
   });
 });
+// ============================================
+// 8. КОНФЕТТИ ПРИ ОТКРЫТИИ САЙТА
+// ============================================
+document.addEventListener("DOMContentLoaded", function () {
+  // Запускаем конфетти через небольшую задержку
+  setTimeout(() => {
+    // Первый залп — основной
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 },
+      colors: ["#8b6f4c", "#d4a373", "#b5835a", "#f5e6d3", "#e8d5c4"],
+    });
+  }, 300);
+
+  // Второй залп — через 0.7 секунды
+  setTimeout(() => {
+    confetti({
+      particleCount: 60,
+      spread: 50,
+      origin: { y: 0.7, x: 0.3 },
+      colors: ["#c0392b", "#e67e22", "#f1c40f", "#2ecc71", "#3498db"],
+    });
+  }, 700);
+
+  // Третий залп — через 1.2 секунды
+  setTimeout(() => {
+    confetti({
+      particleCount: 40,
+      spread: 40,
+      origin: { y: 0.8, x: 0.7 },
+      colors: ["#e74c3c", "#f39c12", "#9b59b6", "#1abc9c"],
+    });
+  }, 1200);
+
+  // Дополнительный эффект — падающие звёздочки
+  setTimeout(() => {
+    confetti({
+      particleCount: 30,
+      spread: 60,
+      origin: { y: 0.4, x: 0.5 },
+      startVelocity: 20,
+      gravity: 0.3,
+      ticks: 200,
+      shapes: ["star"],
+      colors: ["#f1c40f", "#f39c12", "#e67e22"],
+    });
+  }, 1500);
+});
