@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Приглашение на День Рождения | Михаил Белозёров</title>
+
+    <!-- Шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Charis+SIL:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css">
+    <!-- <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      rel="stylesheet"
+    /> -->
+
+    
+  </head>
+  <body>
+    <div class="container">
+      <!-- ==========================================
+        КАРТОЧКА
+        ========================================== -->
+      <div class="card">
+        <!-- ШАПКА -->
+        <header class="header">
+          <span class="header__label">Приглашение</span>
+          <h1 class="header__name">
+            <span class="accent">Михаил Белозёров</span>
+          </h1>
+          <p class="header__sub">Приглашает на свой 20-й День Рождения</p>
+        </header>
+
+        <!-- ИНФО -->
+        <div class="info">
+          <!-- <div class="info__row">
+            <span class="info__icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+            </span>
+            <div class="info__content">
+              <strong>Когда:</strong>
+              <span class="highlight">18 июля 2026</span>, суббота, 14:00
+            </div>
+          </div>
+
+          <div class="info__row">
+            <span class="info__icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </span>
+            <div class="info__content">
+              <strong>Где:</strong> Пастерия «Высота», г. Воронеж
+            </div>
+          </div> -->
+
+          Я был бы рад видеть вас <br class="br-text-mobile" />
+          в этот важный для меня день!
+
+          <div class="place-date-time">
+            <p>Пастерия "Высота", 14:00, 18 июля</p>
+          </div>
+        </div>
+
+
+        <!-- КАРТА -->
+        <div class="map-wrapper" id="map-wrapper">
+          <div id="map"></div>
+        </div>
+        <div class="map-address">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          ул. Плехановская, 10 · Пастерия «Высота»
+        </div>
+  <hr class="divider" />
+        <!-- ==========================================
+СЛАЙДЕР С МЕНЮ
+========================================== -->
+        <section class="menu-slider-section">
+          <div class="menu-header">
+            <h2 class="menu-title">Меню</h2>
+            <p class="menu-sub">
+              Ознакомьтесь с блюдами, которые будут на празднике
+            </p>
+          </div>
+
+          <div class="slider-container">
+            <div class="slider-wrapper">
+              <div class="slider-track" id="sliderTrack">
+                <!-- Слайд 1 -->
+                <div class="slide">
+                  <img
+                    src="images/menu-1.jpg"
+                    alt="Меню. Страница 1"
+                    loading="lazy"
+                  />
+                  <div class="slide-label">Страница 1</div>
+                </div>
+                <!-- Слайд 2 -->
+                <div class="slide">
+                  <img
+                    src="images/menu-2.jpg"
+                    alt="Меню. Страница 2"
+                    loading="lazy"
+                  />
+                  <div class="slide-label">Страница 2</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Кнопки навигации -->
+            <button
+              class="slider-btn slider-btn-prev"
+              id="sliderPrev"
+              aria-label="Предыдущее фото"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+            </button>
+            <button
+              class="slider-btn slider-btn-next"
+              id="sliderNext"
+              aria-label="Следующее фото"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
+
+            <!-- Индикаторы -->
+            <div class="slider-dots" id="sliderDots">
+              <span class="dot active" data-index="0"></span>
+              <span class="dot" data-index="1"></span>
+            </div>
+          </div>
+
+          <!-- Lightbox (модальное окно для фото) -->
+          <div class="lightbox" id="lightbox">
+            <button
+              class="lightbox-close"
+              id="lightboxClose"
+              aria-label="Закрыть"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+
+            <button
+              class="lightbox-nav lightbox-prev"
+              id="lightboxPrev"
+              aria-label="Предыдущее фото"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+            </button>
+
+            <button
+              class="lightbox-nav lightbox-next"
+              id="lightboxNext"
+              aria-label="Следующее фото"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
+
+            <div class="lightbox-content">
+              <img id="lightboxImage" src="" alt="Увеличенное фото меню" />
+              <div class="lightbox-counter" id="lightboxCounter">1 / 2</div>
+            </div>
+          </div>
+        </section>
+  <hr class="divider" />
+
+
+         <!-- ТАЙМЕР -->
+<div class="timer-container">
+  <div class="timer-title">До встречи осталось</div>
+  <div class="timer-grid">
+    <div class="timer-item">
+      <span class="timer-value" id="days">00</span>
+      <span class="timer-label">Дней</span>
+    </div>
+    <div class="timer-separator">:</div>
+    <div class="timer-item">
+      <span class="timer-value" id="hours">00</span>
+      <span class="timer-label">Часов</span>
+    </div>
+    <div class="timer-separator">:</div>
+    <div class="timer-item">
+      <span class="timer-value" id="minutes">00</span>
+      <span class="timer-label">Минут</span>
+    </div>
+    <div class="timer-separator">:</div>
+    <div class="timer-item">
+      <span class="timer-value" id="seconds">00</span>
+      <span class="timer-label">Секунд</span>
+    </div>
+  </div>
+</div>
+
+       <hr class="divider" />
+
+        <!-- ФОРМА -->
+        <section class="form-section">
+          <h2>Подтверждение участия</h2>
+          <p class="form-sub">
+            Ответьте, чтобы мы могли подготовиться к встрече
+          </p>
+
+          <form id="rsvpForm" novalidate>
+            <!-- Имя -->
+            <div class="form-group">
+              <label for="name">Имя <span class="required">*</span></label>
+              <input
+                type="text"
+                id="name"
+                placeholder="Например, Екатерина"
+                required
+              />
+            </div>
+
+            <!-- Статус -->
+            <div class="form-group">
+              <label>Статус участия</label>
+              <div class="radio-group">
+                <label>
+                  <input type="radio" name="status" value="Приду" checked />
+                  Приду
+                </label>
+                <label>
+                  <input type="radio" name="status" value="Не приду" />
+                  Не приду
+                </label>
+                <label>
+                  <input type="radio" name="status" value="Возможно" />
+                  Возможно
+                </label>
+              </div>
+            </div>
+
+            <!-- Количество + Аллергены -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="guests">Количество гостей</label>
+                <select id="guests">
+                  <option value="1">1</option>
+                  <option value="2" selected>2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6+">6+</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="allergies">Аллергены / Особенности</label>
+                <input
+                  type="text"
+                  id="allergies"
+                  placeholder="Орехи, лактоза, вегетарианство..."
+                />
+              </div>
+            </div>
+
+            <!-- Пожелания -->
+            <div class="form-group">
+              <label for="message">Пожелания или комментарий</label>
+              <textarea
+                id="message"
+                placeholder="Если хотите что-то добавить..."
+              ></textarea>
+            </div>
+
+            <!-- Ошибка -->
+            <div class="error-msg" id="formError">
+              Пожалуйста, укажите ваше имя.
+            </div>
+
+            <!-- Согласие на обработку данных -->
+<div class="checkbox-group">
+  <label class="checkbox-label" for="privacyConsent">
+    <input type="checkbox" id="privacyConsent" required />
+    <span class="checkmark"></span>
+    <span class="checkbox-text">
+      Я согласен(на) на обработку персональных данных
+      <a href="privacy.html" target="_blank" class="privacy-link">(подробнее)</a>
+    </span>
+  </label>
+  <div class="checkbox-error" id="privacyError">
+    Пожалуйста, подтвердите согласие на обработку данных
+  </div>
+</div>
+
+<!-- Кнопка -->
+<button type="submit" class="btn-submit" id="submitBtn">
+  Отправить ответ
+</button>
+
+            
+          </form>
+
+          <!-- Успех -->
+          <div class="success-msg" id="successMessage">
+            <!-- <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            > -->
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+            <span>Ваш ответ успешно отправлен! Ждём вас!</span>
+          </div>
+        </section>
+      </div>
+
+      <!-- ПОДВАЛ -->
+      <div class="footer">
+<a href="privacy.html" class="privacy-link" >Политика конфиденциальности</a>
+
+  <a href="https://github.com/Belozerovmi" class="gh-link" >made by belozerov</a>
+ 
+</div>
+
+    <!-- ==========================================
+    ЯНДЕКС КАРТЫ
+    ========================================== -->
+    <!-- Подключаем Яндекс.Карты v2.0 (стабильная версия) -->
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=253d76b6-7fbc-4671-8970-0f17a43e165d&lang=ru_RU"></script>
+
+    <!-- ==========================================
+    СКРИПТЫ
+    ========================================== -->
+    <script src="script.js" defer></script>
+  </body>
+</html>

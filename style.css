@@ -1,0 +1,1282 @@
+/* ============================================
+                   RESET & БАЗОВЫЕ СТИЛИ
+                   ============================================ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+* {
+  font-family: "Charis SIL", serif;
+}
+
+:root {
+  --color-body: #6d5639;
+  --color-bg: #faf8f6;
+  --color-card: #ffffff;
+  --color-text: #1a1a1a;
+  --color-muted: #6b6b6b;
+  --color-border: #e8e4e0;
+  --color-accent: #8b6f4c;
+  --color-accent-hover: #6d5639;
+  --radius: 16px;
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  background: var(--color-body);
+  color: var(--color-text);
+  line-height: 1.6;
+  padding: 24px 20px 48px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  max-width: 580px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ============================================
+                   КАРТОЧКА
+                   ============================================ */
+.card {
+  background: var(--color-card);
+  border-radius: var(--radius);
+  padding: 40px 36px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--color-border);
+  transition: all 0.2s;
+}
+
+/* ============================================
+                   ШАПКА
+                   ============================================ */
+.header {
+  text-align: center;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 32px;
+}
+
+.header__label {
+  font-family: "Charis SIL", serif;
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: 16px;
+  padding: 4px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 100px;
+}
+
+.header__name {
+  font-family: "Yeseva One", serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+/* 
+      .header__name .accent {
+        color: var(--color-accent);
+      } */
+
+.header__sub {
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--color-muted);
+  font-family: "Charis SIL", serif;
+}
+
+/* ============================================
+                   ИНФО-БЛОК
+                   ============================================ */
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 32px;
+  font-family: "Charis SIL", serif;
+}
+
+.info__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 14px 16px;
+  background: var(--color-bg);
+  border-radius: 12px;
+}
+
+.info__icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  color: var(--color-accent);
+}
+
+.info__icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.info__content {
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+
+.info__content strong {
+  font-weight: 600;
+}
+
+.info__content .highlight {
+  background: #f0ebe5;
+  padding: 1px 12px;
+  border-radius: 40px;
+  font-weight: 500;
+}
+
+/* ============================================
+                   КАРТА
+                   ============================================ */
+.map-wrapper {
+  margin: 0 0 8px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #e8e4e0;
+  height: 350px;
+  position: relative;
+  border: 2px dashed var(--color-accent);
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+}
+
+.map-address {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  font-family: "Charis SIL", serif;
+}
+
+.map-address svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--color-accent);
+}
+
+/* ============================================
+                   РАЗДЕЛИТЕЛЬ
+                   ============================================ */
+.divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 32px 0;
+}
+
+/* ============================================
+                   ФОРМА
+                   ============================================ */
+.form-section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.form-section .form-sub {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+  font-family: "Charis SIL", serif;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  font-family: "Charis SIL", serif;
+}
+
+.form-group label {
+  font-family: "Charis SIL", serif;
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+  margin-bottom: 6px;
+}
+
+.form-group label .required {
+  color: #c0392b;
+  margin-left: 2px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--color-border);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background: var(--color-bg);
+  color: var(--color-text);
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(139, 111, 76, 0.08);
+  background: #ffffff;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 72px;
+}
+
+.form-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10z' fill='%236b6b6b'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+/* Radio группа */
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--color-text);
+  padding: 10px 18px;
+  border: 2px solid var(--color-border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+  background: var(--color-bg);
+}
+
+.radio-group label:hover {
+  border-color: var(--color-accent);
+}
+
+.radio-group input[type="radio"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--color-accent);
+  margin: 0;
+  flex-shrink: 0;
+  -webkit-appearance: radio;
+  appearance: radio;
+}
+
+.radio-group label:has(input:checked) {
+  border-color: var(--color-accent);
+  background: #f5f0ea;
+}
+
+/* Две колонки */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Кнопка */
+.btn-submit {
+  width: 100%;
+  padding: 16px;
+  background: #382815;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.1s;
+  margin-top: 4px;
+}
+
+.btn-submit:hover {
+  background: #261b0d;
+}
+
+.btn-submit:active {
+  transform: scale(0.98);
+}
+
+.btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Сообщение об успехе */
+.success-msg {
+  display: none;
+  align-items: center;
+  gap: 12px;
+  background: #eef4ea;
+  color: #2d4a2d;
+  padding: 16px 20px;
+  border-radius: 12px;
+  margin-top: 20px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  font-family: "Charis SIL", serif;
+}
+
+.success-msg.show {
+  display: flex;
+}
+
+.success-msg svg {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: #2d4a2d;
+}
+
+/* Ошибка */
+.error-msg {
+  display: none;
+  color: #c0392b;
+  font-size: 0.85rem;
+  margin-top: 6px;
+}
+
+.error-msg.show {
+  display: block;
+}
+
+/* ============================================
+                   ПОДВАЛ
+                   ============================================ */
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 32px;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  letter-spacing: 0.02em;
+  font-family: "Charis SIL", serif;
+}
+
+.footer span {
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+/* ============================================
+                   АДАПТИВ
+                   ============================================ */
+@media (max-width: 600px) {
+  body {
+    padding: 16px 12px 32px;
+  }
+
+  .card {
+    padding: 24px 18px;
+    border-radius: 12px;
+  }
+
+  .header__name {
+    font-size: 2.2rem;
+  }
+
+  .header__sub {
+    font-size: 0.95rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .radio-group {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .radio-group label {
+    padding: 12px 16px;
+  }
+
+  .map-wrapper {
+    height: 280px;
+  }
+
+  #map {
+    min-height: 160px;
+  }
+
+  .info__row {
+    padding: 12px 14px;
+  }
+}
+
+@media (max-width: 400px) {
+  .card {
+    padding: 18px 14px;
+  }
+
+  .header__name {
+    font-size: 1.8rem;
+  }
+
+  .header__label {
+    font-size: 0.6rem;
+  }
+}
+
+/* ============================================
+                   АНИМАЦИЯ ЗАГРУЗКИ
+                   ============================================ */
+.spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.place-date-time {
+  border: 2px dashed black;
+  text-align: center;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border-color: var(--color-accent);
+  background: #f5f0ea;
+}
+.info {
+  text-align: center;
+}
+
+.form-section h2 {
+  /* font-family: "Yeseva One", serif; */
+  font-family: "Charis SIL", serif;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================
+СЛАЙДЕР МЕНЮ
+============================================ */
+.menu-slider-section {
+  margin: 32px 0 8px;
+}
+
+.menu-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.menu-title {
+  font-family: "Yeseva One", serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  margin-bottom: 4px;
+  color: var(--color-text);
+}
+
+.menu-sub {
+  font-family: "Charis SIL", serif;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+/* Слайдер */
+.slider-container {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  /* background: var(--color-bg); */
+  user-select: none;
+}
+
+.slider-wrapper {
+  border: 2px dashed var(--color-accent);
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.slider-track {
+  display: flex;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+.slide {
+  flex: 0 0 100%;
+  position: relative;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: contain;
+  display: block;
+  background: #f5f0ea;
+}
+
+.slide-label {
+  font-family: "Charis SIL", serif;
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  /* font-family: "Inter", sans-serif; */
+}
+
+/* Кнопки навигации */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  z-index: 10;
+  color: var(--color-text);
+}
+
+.slider-btn:hover {
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.slider-btn:active {
+  transform: translateY(-50%) scale(0.92);
+}
+
+.slider-btn:hover svg {
+  opacity: 1;
+}
+
+.slider-btn svg {
+  width: 20px;
+  height: 20px;
+  opacity: 0.5;
+}
+
+.slider-btn-prev {
+  left: 12px;
+}
+
+.slider-btn-next {
+  right: 12px;
+}
+
+/* Индикаторы (точки) */
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 0 6px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-border);
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+  padding: 0;
+}
+
+.dot.active {
+  background: var(--color-accent);
+  width: 24px;
+  border-radius: 4px;
+}
+
+.dot:hover {
+  background: var(--color-accent-hover);
+  opacity: 0.7;
+}
+
+/* ============================================
+АДАПТИВ СЛАЙДЕРА
+============================================ */
+@media (max-width: 600px) {
+  .slider-btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  .slider-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .slider-btn-prev {
+    left: 6px;
+  }
+
+  .slider-btn-next {
+    right: 6px;
+  }
+
+  .slide img {
+    max-height: 350px;
+  }
+
+  .menu-title {
+    font-size: 1.4rem;
+  }
+
+  .slide-label {
+    font-size: 0.6rem;
+    padding: 2px 10px;
+    bottom: 10px;
+    right: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .slide img {
+    max-height: 280px;
+  }
+
+  .slider-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .slider-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* ============================================
+LIGHTBOX (модальное окно)
+============================================ */
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.lightbox.active {
+  display: flex;
+  opacity: 1;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: lightboxFadeIn 0.3s ease;
+}
+
+@keyframes lightboxFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.lightbox-counter {
+  color: rgba(255, 255, 255, 0.7);
+  font-family: "Charis SIL", serif;
+  font-size: 0.85rem;
+  margin-top: 16px;
+  letter-spacing: 0.04em;
+}
+
+/* Кнопка закрытия */
+.lightbox-close {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px dashed #989898;
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  color: #ffffff;
+  z-index: 10000;
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+.lightbox-close svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Навигация в лайтбоксе */
+.lightbox-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px dashed #989898;
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  color: #ffffff;
+  z-index: 10000;
+}
+
+.lightbox-nav:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.lightbox-nav svg {
+  width: 24px;
+  height: 24px;
+}
+
+.lightbox-prev {
+  left: 20px;
+}
+
+.lightbox-next {
+  right: 20px;
+}
+.br-text-mobile {
+  display: none;
+}
+
+/* ============================================
+АДАПТИВ LIGHTBOX
+============================================ */
+@media (max-width: 600px) {
+  .lightbox {
+    padding: 12px;
+  }
+
+  .lightbox-close {
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .lightbox-close svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .lightbox-nav {
+    width: 36px;
+    height: 36px;
+  }
+
+  .lightbox-nav svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .lightbox-prev {
+    left: 8px;
+  }
+
+  .lightbox-next {
+    right: 8px;
+  }
+
+  .lightbox-content img {
+    max-height: 70vh;
+  }
+
+  .lightbox-counter {
+    font-size: 0.75rem;
+    margin-top: 12px;
+  }
+
+  .br-text-mobile {
+    display: flex;
+  }
+}
+
+/* ============================================
+ТАЙМЕР (с фиксированными размерами)
+============================================ */
+.timer-container {
+  text-align: center;
+  padding: 20px 10px;
+  margin-bottom: 20px;
+  background: var(--color-bg);
+  border-radius: 12px;
+  border: 2px dashed var(--color-accent);
+  position: relative;
+  overflow: hidden;
+}
+
+/* .timer-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 50% 50%, rgba(139, 111, 76, 0.03) 0%, transparent 70%);
+  animation: timerPulse 4s ease-in-out infinite;
+} */
+
+@keyframes timerPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+.timer-title {
+  font-family: "Charis SIL", serif;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-muted);
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.timer-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.timer-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* ФИКСИРОВАННАЯ ШИРИНА */
+  width: 72px;
+  flex-shrink: 0;
+}
+
+.timer-value {
+  font-family: "Yeseva One", serif;
+  font-size: 2.4rem;
+  font-weight: 400;
+  color: var(--color-text);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  background: var(--color-card);
+  padding: 8px 12px;
+  border-radius: 8px;
+  /* ФИКСИРОВАННАЯ ШИРИНА */
+  width: 100%;
+  min-width: 60px;
+  max-width: 72px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--color-border);
+  /* ФИКСИРОВАННЫЙ РАЗМЕР ШРИФТА НЕ МЕНЯЕТСЯ */
+  font-variant-numeric: tabular-nums;
+}
+
+.timer-label {
+  font-family: "Charis SIL", serif;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+  margin-top: 6px;
+  /* ФИКСИРОВАННАЯ ВЫСОТА */
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer-separator {
+  font-family: "Yeseva One", serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  /* ФИКСИРОВАННАЯ ШИРИНА */
+  width: 16px;
+  text-align: center;
+  padding-bottom: 20px;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+/* Адаптив таймера */
+@media (max-width: 600px) {
+  .timer-container {
+    padding: 16px 8px;
+  }
+
+  .timer-grid {
+    gap: 4px;
+  }
+
+  .timer-item {
+    width: 56px;
+  }
+
+  .timer-value {
+    font-size: 1.6rem;
+    min-width: 46px;
+    max-width: 56px;
+    padding: 6px 8px;
+  }
+
+  .timer-separator {
+    font-size: 1.4rem;
+    width: 12px;
+    padding-bottom: 16px;
+  }
+
+  .timer-label {
+    font-size: 0.5rem;
+    height: 16px;
+  }
+
+  .timer-title {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .timer-item {
+    width: 44px;
+  }
+
+  .timer-value {
+    font-size: 1.2rem;
+    min-width: 36px;
+    max-width: 44px;
+    padding: 4px 6px;
+  }
+
+  .timer-separator {
+    font-size: 1rem;
+    width: 8px;
+    padding-bottom: 12px;
+  }
+
+  .timer-label {
+    font-size: 0.6rem;
+    height: 14px;
+  }
+}
+.privacy-link {
+  color: white;
+  text-decoration: none;
+}
+
+.privacy-link:hover {
+  color: #fde2c1;
+  text-decoration: underline;
+}
+
+.gh-link {
+  color: #ffffff66;
+  text-decoration: none;
+}
+
+.gh-link:hover {
+  color: #fde2c1;
+  text-decoration: underline;
+}
+
+/* ============================================
+КАСТОМНЫЙ ЧЕКБОКС
+============================================ */
+.checkbox-group {
+  margin-top: 4px;
+  margin-bottom: 20px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  position: relative;
+  padding: 4px 0;
+  font-family: "Charis SIL", serif;
+  font-size: 0.92rem;
+  color: var(--color-text);
+  line-height: 1.4;
+  user-select: none;
+}
+
+/* Скрываем стандартный чекбокс */
+.checkbox-label input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Кастомный квадрат */
+.checkmark {
+  display: flex;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-bg);
+  transition: all 0.2s ease;
+  position: relative;
+  margin-top: 1px;
+}
+
+/* Галочка (скрыта по умолчанию) */
+.checkmark::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 12px;
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* Состояние при наведении */
+.checkbox-label:hover .checkmark {
+  border-color: var(--color-accent);
+  background: #f5f0ea;
+}
+
+/* Состояние при фокусе */
+.checkbox-label input[type="checkbox"]:focus + .checkmark {
+  box-shadow: 0 0 0 3px rgba(139, 111, 76, 0.15);
+}
+
+/* Состояние checked */
+.checkbox-label input[type="checkbox"]:checked + .checkmark {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  animation: checkboxPop 0.25s ease;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkmark::after {
+  opacity: 1;
+}
+
+/* Анимация при клике */
+@keyframes checkboxPop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Текст чекбокса */
+.checkbox-text {
+  flex: 1;
+  padding-top: 1px;
+}
+
+.privacy-link {
+  color: #ffffff71;
+  text-decoration: none;
+  border-bottom: 1px dotted var(--color-accent);
+  transition: border-bottom 0.2s;
+  font-size: 0.85rem;
+}
+
+.privacy-link:hover {
+  border-bottom: 1px solid var(--color-accent);
+}
+
+/* Ошибка для чекбокса */
+.checkbox-error {
+  display: none;
+  color: #c0392b;
+  font-size: 0.8rem;
+  margin-top: 6px;
+  padding-left: 34px;
+  font-family: "Charis SIL", serif;
+}
+
+.checkbox-error.show {
+  display: block;
+}
+
+/* Состояние ошибки */
+.checkbox-label.error .checkmark {
+  border-color: #c0392b;
+  background: #fff5f5;
+}
+
+.checkbox-label.error .checkmark::after {
+  border-color: #c0392b;
+}
+
+/* Для мобильных */
+@media (max-width: 600px) {
+  .checkbox-label {
+    font-size: 0.85rem;
+  }
+
+  .checkmark {
+    width: 20px;
+    height: 20px;
+    margin-top: 0;
+  }
+
+  .checkmark::after {
+    left: 5px;
+    top: 1px;
+    width: 5px;
+    height: 11px;
+  }
+
+  .checkbox-error {
+    padding-left: 32px;
+    font-size: 0.75rem;
+  }
+}
