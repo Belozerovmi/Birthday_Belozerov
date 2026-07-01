@@ -798,7 +798,7 @@ LIGHTBOX (модальное окно)
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgb(0 0 0 / 80%);
   backdrop-filter: blur(8px);
   z-index: 9999;
   justify-content: center;
@@ -861,7 +861,7 @@ LIGHTBOX (модальное окно)
   height: 44px;
   border-radius: 50%;
   border: none;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgb(74 74 74 / 43%);
   border: 2px dashed #989898;
   backdrop-filter: blur(4px);
   cursor: pointer;
@@ -874,7 +874,7 @@ LIGHTBOX (модальное окно)
 }
 
 .lightbox-close:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.671);
   transform: rotate(90deg);
 }
 
@@ -1621,7 +1621,7 @@ LIGHTBOX (свайп + зум)
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.92);
+  background: rgb(0 0 0 / 80%);
   backdrop-filter: blur(8px);
   z-index: 9999;
   justify-content: center;
@@ -1690,7 +1690,7 @@ LIGHTBOX (свайп + зум)
   height: 44px;
   border-radius: 50%;
   border: none;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgb(74 74 74 / 43%);
   border: 2px solid rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(4px);
   cursor: pointer;
@@ -1703,7 +1703,7 @@ LIGHTBOX (свайп + зум)
 }
 
 .lightbox-close:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.671);
   transform: rotate(90deg);
 }
 
