@@ -108,14 +108,12 @@ form.addEventListener("submit", async function (e) {
 
   const status =
     document.querySelector('input[name="status"]:checked')?.value || "";
-  const guests = document.getElementById("guests").value;
   const allergies = document.getElementById("allergies").value.trim();
   const message = document.getElementById("message").value.trim();
 
   const data = {
     name,
     status,
-    guests,
     allergies,
     message,
     privacyConsent: "Да",
@@ -461,4 +459,52 @@ document.addEventListener("DOMContentLoaded", function () {
   // Обновляем каждую секунду
   updateTimer();
   setInterval(updateTimer, 1000);
+});
+// ============================================
+// 7. ПЛАВНОЕ ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ
+// ============================================
+document.addEventListener("DOMContentLoaded", function () {
+  // Выбираем все элементы, которые хотим анимировать
+  const elements = document.querySelectorAll(
+    ".card, .header, .info, .map-wrapper, .menu-slider-section, .timer-container, .form-section, .footer",
+  );
+
+  // Добавляем класс fade-in ко всем элементам
+  elements.forEach((el, index) => {
+    // Пропускаем если уже есть класс
+    if (
+      !el.classList.contains("fade-in") &&
+      !el.classList.contains("fade-in-scale")
+    ) {
+      el.classList.add("fade-in");
+      // Добавляем задержку для каскадного эффекта
+      const delay = Math.min(index * 0.1, 0.5);
+      if (delay > 0) {
+        el.classList.add(`delay-${Math.round(delay * 10)}`);
+      }
+    }
+  });
+
+  // Настраиваем Intersection Observer
+  const observerOptions = {
+    root: null, // viewport
+    rootMargin: "0px 0px -50px 0px", // активируется чуть раньше, чем элемент появится
+    threshold: 0.1, // 10% элемента видно
+  };
+
+  const observer = new IntersectionObserver(function (entries) {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // Добавляем класс visible
+        entry.target.classList.add("visible");
+        // Можно остановить наблюдение за этим элементом
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Начинаем наблюдать за всеми элементами с fade-in
+  document.querySelectorAll(".fade-in, .fade-in-scale").forEach((el) => {
+    observer.observe(el);
+  });
 });
