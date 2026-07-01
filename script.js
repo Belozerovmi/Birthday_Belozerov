@@ -261,18 +261,34 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // ============================================
-// 4. LIGHTBOX ДЛЯ СЛАЙДЕРА
+// 4. LIGHTBOX ДЛЯ СЛАЙДЕРА (свайп + зум)
 // ============================================
 document.addEventListener("DOMContentLoaded", function () {
   const lightbox = document.getElementById("lightbox");
   const lightboxImage = document.getElementById("lightboxImage");
   const lightboxCounter = document.getElementById("lightboxCounter");
   const closeBtn = document.getElementById("lightboxClose");
-  const prevBtn = document.getElementById("lightboxPrev");
-  const nextBtn = document.getElementById("lightboxNext");
   const slides = document.querySelectorAll(".slide");
   let currentLightboxIndex = 0;
   const totalSlides = slides.length;
+
+  // --- ПЕРЕМЕННЫЕ ДЛЯ СВАЙПА ---
+  let startX = 0;
+  let startY = 0;
+  let isDragging = false;
+  let isSwiping = false;
+  let currentTranslateX = 0;
+  let currentTranslateY = 0;
+  let initialTranslateX = 0;
+  let initialTranslateY = 0;
+  let scale = 1;
+  let initialScale = 1;
+  let isZoomed = false;
+
+  // --- ПЕРЕМЕННЫЕ ДЛЯ ЗУМА ---
+  let lastTouchDist = 0;
+  let touchStartX = 0;
+  let touchStartY = 0;
 
   // Функция открытия лайтбокса
   function openLightbox(index) {
@@ -283,43 +299,202 @@ document.addEventListener("DOMContentLoaded", function () {
     lightboxCounter.textContent = `${index + 1} / ${totalSlides}`;
     lightbox.classList.add("active");
     document.body.style.overflow = "hidden";
+    // Сбрасываем трансформации
+    resetTransform();
   }
 
   // Функция закрытия лайтбокса
   function closeLightbox() {
     lightbox.classList.remove("active");
     document.body.style.overflow = "";
+    resetTransform();
   }
 
-  // Функция переключения в лайтбоксе
+  // Сброс трансформаций
+  function resetTransform() {
+    scale = 1;
+    isZoomed = false;
+    currentTranslateX = 0;
+    currentTranslateY = 0;
+    lightboxImage.style.transform = `translate(0, 0) scale(1)`;
+    lightboxImage.style.transition = "transform 0.3s ease";
+  }
+
+  // Переключение фото
   function changeLightboxImage(direction) {
     let newIndex = currentLightboxIndex + direction;
     if (newIndex < 0) newIndex = totalSlides - 1;
     if (newIndex >= totalSlides) newIndex = 0;
-    openLightbox(newIndex);
+
+    // Сбрасываем зум перед сменой фото
+    resetTransform();
+    setTimeout(() => {
+      openLightbox(newIndex);
+    }, 50);
   }
 
-  // Клик по слайду (открытие лайтбокса)
+  // --- ОБРАБОТЧИКИ ДЛЯ КАРТИНКИ ---
+
+  // Начало касания (для зума и свайпа)
+  lightboxImage.addEventListener(
+    "touchstart",
+    function (e) {
+      if (e.touches.length === 1) {
+        // Один палец — свайп или перетаскивание
+        const touch = e.touches[0];
+        startX = touch.clientX;
+        startY = touch.clientY;
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+        isDragging = true;
+        isSwiping = false;
+        // Запоминаем текущее положение
+        const transform = this.style.transform;
+        const match = transform.match(/translate\(([^,]+),\s*([^)]+)\)/);
+        if (match) {
+          currentTranslateX = parseFloat(match[1]) || 0;
+          currentTranslateY = parseFloat(match[2]) || 0;
+        }
+        initialTranslateX = currentTranslateX;
+        initialTranslateY = currentTranslateY;
+        this.style.transition = "none";
+      } else if (e.touches.length === 2) {
+        // Два пальца — зум
+        const touch1 = e.touches[0];
+        const touch2 = e.touches[1];
+        lastTouchDist = getDistance(touch1, touch2);
+        initialScale = scale;
+        isZoomed = true;
+        this.style.transition = "none";
+      }
+    },
+    { passive: true },
+  );
+
+  // Движение пальцев
+  lightboxImage.addEventListener(
+    "touchmove",
+    function (e) {
+      e.preventDefault();
+
+      if (e.touches.length === 1 && isDragging) {
+        // Один палец — свайп или перетаскивание
+        const touch = e.touches[0];
+        const deltaX = touch.clientX - startX;
+        const deltaY = touch.clientY - startY;
+
+        // Если зум включен — перетаскиваем фото
+        if (isZoomed && scale > 1) {
+          const newX = initialTranslateX + deltaX;
+          const newY = initialTranslateY + deltaY;
+          this.style.transform = `translate(${newX}px, ${newY}px) scale(${scale})`;
+          return;
+        }
+
+        // Если зума нет — определяем свайп
+        if (Math.abs(deltaX) > 20 || Math.abs(deltaY) > 20) {
+          isSwiping = true;
+          // Если свайп по горизонтали больше, чем по вертикали
+          if (Math.abs(deltaX) > Math.abs(deltaY)) {
+            // Сдвигаем картинку для визуального эффекта
+            const shift = deltaX * 0.3;
+            this.style.transform = `translate(${shift}px, 0) scale(1)`;
+            this.style.transition = "none";
+          }
+        }
+      } else if (e.touches.length === 2) {
+        // Два пальца — зум
+        const touch1 = e.touches[0];
+        const touch2 = e.touches[1];
+        const currentDist = getDistance(touch1, touch2);
+        const deltaScale = currentDist / lastTouchDist;
+        scale = Math.min(Math.max(initialScale * deltaScale, 1), 4);
+        isZoomed = scale > 1.05;
+
+        // Центрируем зум
+        const centerX = (touch1.clientX + touch2.clientX) / 2;
+        const centerY = (touch1.clientY + touch2.clientY) / 2;
+        const rect = this.getBoundingClientRect();
+        const originX = ((centerX - rect.left) / rect.width) * 100;
+        const originY = ((centerY - rect.top) / rect.height) * 100;
+
+        this.style.transformOrigin = `${originX}% ${originY}%`;
+        this.style.transform = `translate(0, 0) scale(${scale})`;
+        this.style.transition = "none";
+      }
+    },
+    { passive: false },
+  );
+
+  // Конец касания
+  lightboxImage.addEventListener(
+    "touchend",
+    function (e) {
+      if (isDragging && !isZoomed) {
+        // Определяем свайп
+        const touch = e.changedTouches[0];
+        const deltaX = touch.clientX - touchStartX;
+        const deltaY = touch.clientY - touchStartY;
+
+        // Если свайп по горизонтали больше 50px и больше чем по вертикали
+        if (
+          Math.abs(deltaX) > 50 &&
+          Math.abs(deltaX) > Math.abs(deltaY) * 0.8
+        ) {
+          if (deltaX < 0) {
+            changeLightboxImage(1); // Свайп влево — следующее
+          } else {
+            changeLightboxImage(-1); // Свайп вправо — предыдущее
+          }
+        } else if (
+          isSwiping &&
+          Math.abs(deltaX) < 20 &&
+          Math.abs(deltaY) < 20
+        ) {
+          // Если это был клик, а не свайп
+          // Ничего не делаем
+        } else {
+          // Возвращаем фото на место
+          resetTransform();
+        }
+      }
+
+      isDragging = false;
+      isSwiping = false;
+      this.style.transition = "transform 0.3s ease";
+      lastTouchDist = 0;
+    },
+    { passive: true },
+  );
+
+  // Функция для расчета расстояния между пальцами
+  function getDistance(touch1, touch2) {
+    const dx = touch1.clientX - touch2.clientX;
+    const dy = touch1.clientY - touch2.clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+  }
+
+  // --- КЛИК ПО СЛАЙДУ (открытие лайтбокса) ---
   slides.forEach((slide, index) => {
     slide.style.cursor = "pointer";
     slide.addEventListener("click", function (e) {
-      // Не открываем лайтбокс если клик по кнопкам навигации
       if (e.target.closest(".slider-btn")) return;
       openLightbox(index);
     });
   });
 
-  // Закрытие по кнопке
+  // --- ЗАКРЫТИЕ ---
+  // По кнопке
   closeBtn.addEventListener("click", closeLightbox);
 
-  // Закрытие по клику на фон
+  // По клику на фон (но не на картинку)
   lightbox.addEventListener("click", function (e) {
     if (e.target === lightbox) {
       closeLightbox();
     }
   });
 
-  // Закрытие по Escape
+  // По Escape
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && lightbox.classList.contains("active")) {
       closeLightbox();
@@ -335,16 +510,40 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Кнопки навигации в лайтбоксе
-  prevBtn.addEventListener("click", function (e) {
-    e.stopPropagation();
-    changeLightboxImage(-1);
+  // --- ДВОЙНОЙ КЛИК ДЛЯ ЗУМА (на десктопе) ---
+  lightboxImage.addEventListener("dblclick", function (e) {
+    if (scale > 1.5) {
+      resetTransform();
+    } else {
+      scale = 2.5;
+      isZoomed = true;
+      const rect = this.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      this.style.transformOrigin = `${x}% ${y}%`;
+      this.style.transform = `translate(0, 0) scale(${scale})`;
+      this.style.transition = "transform 0.3s ease";
+    }
   });
 
-  nextBtn.addEventListener("click", function (e) {
-    e.stopPropagation();
-    changeLightboxImage(1);
-  });
+  // --- КОЛЁСИКО МЫШИ ДЛЯ ЗУМА ---
+  lightboxImage.addEventListener(
+    "wheel",
+    function (e) {
+      e.preventDefault();
+      const delta = e.deltaY > 0 ? -0.1 : 0.1;
+      scale = Math.min(Math.max(scale + delta, 1), 4);
+      isZoomed = scale > 1.05;
+
+      const rect = this.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      this.style.transformOrigin = `${x}% ${y}%`;
+      this.style.transform = `translate(0, 0) scale(${scale})`;
+      this.style.transition = "transform 0.1s ease";
+    },
+    { passive: false },
+  );
 });
 
 // ============================================
@@ -506,31 +705,5 @@ document.addEventListener("DOMContentLoaded", function () {
   // Начинаем наблюдать за всеми элементами с fade-in
   document.querySelectorAll(".fade-in, .fade-in-scale").forEach((el) => {
     observer.observe(el);
-  });
-});
-// ============================================
-// 8. ДВОЙНОЙ КЛИК ДЛЯ ЗУМА В ЛАЙТБОКСЕ
-// ============================================
-document.addEventListener("DOMContentLoaded", function () {
-  const lightboxImage = document.getElementById("lightboxImage");
-
-  lightboxImage.addEventListener("dblclick", function (e) {
-    // Проверяем, есть ли уже зум
-    const currentScale = this.style.transform
-      ? parseFloat(this.style.transform.replace(/[^0-9.]/g, ""))
-      : 1;
-
-    if (currentScale > 1) {
-      // Уменьшаем
-      this.style.transform = "scale(1)";
-      this.style.transformOrigin = "center center";
-    } else {
-      // Увеличиваем
-      const rect = this.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-      this.style.transformOrigin = `${x}% ${y}%`;
-      this.style.transform = "scale(2.5)";
-    }
   });
 });
